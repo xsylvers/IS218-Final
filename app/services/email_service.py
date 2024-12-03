@@ -7,15 +7,21 @@ from app.models.user_model import User
 
 class EmailService:
     def __init__(self, template_manager: TemplateManager):
-        self.smtp_client = SMTPClient(
-            server=settings.smtp_server,
-            port=settings.smtp_port,
-            username=settings.smtp_username,
-            password=settings.smtp_password
-        )
+        if not settings.smtp_server or not settings.smtp_port or not settings.smtp_username or not settings.smtp_password:
+            print("SMTP settings not configured. Email service will not work.")
+            self.smtp_client = None
+        else:
+            self.smtp_client = SMTPClient(
+                server=settings.smtp_server,
+                port=settings.smtp_port,
+                username=settings.smtp_username,
+                password=settings.smtp_password
+            )
         self.template_manager = template_manager
 
     async def send_user_email(self, user_data: dict, email_type: str):
+        if not self.smtp_client:
+            return
         subject_map = {
             'email_verification': "Verify Your Account",
             'password_reset': "Password Reset Instructions",
@@ -29,6 +35,8 @@ class EmailService:
         self.smtp_client.send_email(subject_map[email_type], html_content, user_data['email'])
 
     async def send_verification_email(self, user: User):
+        if not self.smtp_client:
+            return
         verification_url = f"{settings.server_base_url}verify-email/{user.id}/{user.verification_token}"
         await self.send_user_email({
             "name": user.first_name,
