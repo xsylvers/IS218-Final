@@ -36,6 +36,65 @@ This project requires effective time management and a well-planned strategy, but
 
 4. **Maintain a Working Main Branch**: Throughout the project, ensure you always have a working main branch deploying to Docker like a well-oiled machine. This will prevent any last-minute headaches and ensure a smooth submission process - no tears allowed, only triumphs! 😊🚢⚓ Stay focused, stay victorious!
 
+## Commands
+
+1. Start and build a multi-container application:
+
+```
+docker compose up --build
+```
+
+2. Goto http://localhost/docs to view openapi spec documentation
+
+Click "authorize" input username: `admin@example.com` password: `secret`
+
+3. Goto http://localhost:5050 to connect and manage the database.
+
+The following information must match the ones in the `docker-compose.yml` file.
+
+Login:
+
+- Email address / Username: `admin@example.com`
+- Password: `adminpassword`
+
+When add new server:
+
+- Host name/address: `postgres`
+- Port: `5432`
+- Maintenance database: `myappdb`
+- Username: `user`
+- Password: `password`
+
+## Optional Commands
+
+### Run `pytest` inside the containers:
+
+Run all tests:
+
+```
+docker compose exec fastapi pytest
+```
+
+Run a single test:
+
+```
+docker compose exec fastapi pytest tests/test_services/test_user_service.py::test_list_users
+```
+
+### Creating database migration:
+
+```
+docker compose exec fastapi alembic revision --autogenerate -m 'added admin'
+```
+
+
+### Apply database migrations:
+
+```
+docker compose exec fastapi alembic upgrade head
+```
+
+
 ## Submission and Grading: Your Chance to Shine 📝✏️📈
 
 1. **Reflection Document**: Write a document file (`.md` file, at least 400 words) reflecting on your learnings throughout the course and your experience working on this epic project. Include **10 NEW tests, and 1 Feature** you'll be graded on. Make sure your project successfully deploys to DockerHub and include a link to your Docker repository in the document - let your work speak for itself! 📄🔗💥
