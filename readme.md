@@ -105,30 +105,30 @@ docker compose exec fastapi alembic upgrade head
 
 ### Grading Rubric: (100 Points)
 
-1. Reflection Document (20 Points)
+#### 1. Reflection Document (20 Points)
 
 - 10 Points: Quality and completeness of the reflection document, including insights into learnings, challenges faced, and how they were overcome. Must meet the minimum word count (400 words).
 - 5 Points: Clear and detailed description of the new feature implemented, including its purpose, usage, and configuration.
 - 5 Points: Inclusion of DockerHub deployment link and evidence of successful deployment.
 
-2. Commit History and Professional Development Process (20 Points)
+#### 2. Commit History and Professional Development Process (20 Points)
 
 - 20 Points: Consistent commit history with meaningful commit messages. Projects with fewer than 10 commits receive 0 points in this category.
 
 
-3. Test Coverage and Quality Assurance (30 Points)
+#### 3. Test Coverage and Quality Assurance (30 Points)
 
 - 15 Points: Quality and thoroughness of 10 new test cases, covering edge cases, error scenarios, and critical functionalities.
 - 10 Points: New test cases must integrate well with the existing test suite and pass on GitHub Actions.
 - 5 Points: Tests demonstrate creativity and critical thinking, ensuring robust quality assurance for both existing and new features.
 
-4. New Feature Implementation (30 Points)
+#### 4. New Feature Implementation (30 Points)
 
 - 15 Points: Functionality and reliability of the new feature, including adherence to project coding standards and architecture.
 - 10 Points: Tests written for the new feature ensure it works as intended and handles edge cases.
 - 5 Points: Documentation of the new feature, including its purpose, configuration, and any necessary migrations.
 
-5. Deployability (20 Points)
+#### 5. Deployability (20 Points)
 
 - 10 Points: Working deployment to DockerHub, with no critical issues or broken functionalities.
 - 10 Points: Maintains a clean and functional main branch throughout the project lifecycle.
