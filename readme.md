@@ -128,10 +128,10 @@ docker compose exec fastapi alembic upgrade head
 - 10 Points: Tests written for the new feature ensure it works as intended and handles edge cases.
 - 5 Points: Documentation of the new feature, including its purpose, configuration, and any necessary migrations.
 
-#### 5. Deployability (20 Points)
+#### 5. Deployability (~~20 Points~~ Optional)
 
-- 10 Points: Working deployment to DockerHub, with no critical issues or broken functionalities.
-- 10 Points: Maintains a clean and functional main branch throughout the project lifecycle.
+- Working deployment to DockerHub, with no critical issues or broken functionalities.
+- Maintains a clean and functional main branch throughout the project lifecycle.
 
 ### Notes:
 
