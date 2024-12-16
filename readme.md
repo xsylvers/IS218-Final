@@ -130,7 +130,7 @@ docker compose exec fastapi alembic upgrade head
 
 #### 5. Deployability (~~20 Points~~ Optional)
 
-- Working deployment to DockerHub, with no critical issues or broken functionalities.
+- 10 bonus points: Working deployment to DockerHub, with no critical issues or broken functionalities. Upload a screenshot of your project being pushed to DockerHub in the README.
 - Maintains a clean and functional main branch throughout the project lifecycle.
 
 ### Notes:
