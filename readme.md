@@ -108,8 +108,7 @@ docker compose exec fastapi alembic upgrade head
 #### 1. Reflection Document (20 Points)
 
 - 10 Points: Quality and completeness of the reflection document, including insights into learnings, challenges faced, and how they were overcome. Must meet the minimum word count (400 words).
-- 5 Points: Clear and detailed description of the new feature implemented, including its purpose, usage, and configuration.
-- 5 Points: Inclusion of DockerHub deployment link and evidence of successful deployment.
+- 10 Points: Clear and detailed description of the new feature implemented, including its purpose, usage, and configuration.
 
 #### 2. Commit History and Professional Development Process (20 Points)
 
@@ -130,7 +129,7 @@ docker compose exec fastapi alembic upgrade head
 
 #### 5. Deployability (~~20 Points~~ Optional)
 
-- 10 bonus points: Working deployment to DockerHub, with no critical issues or broken functionalities. Upload a screenshot of your project being pushed to DockerHub in the README.
+- 10 bonus points: Working deployment to DockerHub, with no critical issues or broken functionalities. Add the DockerHub deployment link to the README or upload a screenshot of your project being pushed to DockerHub.
 - Maintains a clean and functional main branch throughout the project lifecycle.
 
 ### Notes:
