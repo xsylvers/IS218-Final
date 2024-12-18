@@ -2,7 +2,7 @@ import uuid
 import pytest
 from pydantic import ValidationError
 from datetime import datetime
-from app.schemas.user_schemas import UserBase, UserCreate, UserUpdate, UserResponse, UserListResponse, LoginRequest
+from app.schemas.user_schemas import UserBase, UserCreate, UserUpdate, UserResponse, UserListResponse, LoginRequest, UpdateProfessionalStatusRequest
 
 # Fixtures for common test data
 @pytest.fixture
@@ -53,6 +53,14 @@ def user_response_data(user_base_data):
 def login_request_data():
     return {"email": "john_doe_123@emai.com", "password": "SecurePassword123!"}
 
+@pytest.fixture
+def professional_status_request_data
+    return {is_now_a_professional": True}
+
+@pytest.fixture
+def update_profile_data():
+    return {"nickname: "bob", "email": "john_doe_1234@email.com"}
+        
 # Tests for UserBase
 def test_user_base_valid(user_base_data):
     user = UserBase(**user_base_data)
@@ -77,11 +85,22 @@ def test_user_response_valid(user_response_data):
     assert user.id == user_response_data["id"]
     # assert user.last_login_at == user_response_data["last_login_at"]
 
-# Tests for LoginRequest
+# These are tests for the LoginRequest
 def test_login_request_valid(login_request_data):
     login = LoginRequest(**login_request_data)
     assert login.email == login_request_data["email"]
     assert login.password == login_request_data["password"]
+
+# These are tests forthe updated IsNowAProfessional
+def test_professional_request_valid(professional_status_request_data):
+    updatedStatus = UpdateProfessionalStatusRequest(**professional_status_request_data)
+    assert updatedStatus.is_now_a_professional == professional_status_request_data["is_now_a_professional"]
+
+# These are tests for the updated profile
+def test_update_profile_valid(update_profile_data):
+    updatedProfile = UpdateProfile(**update_profile_data)
+    assert updatedProfile.nickname == update_profile_data["nickname"]
+    assert updatedProfile.email == update_profile_data["email"]
 
 # Parametrized tests for nickname and email validation
 @pytest.mark.parametrize("nickname", ["test_user", "test-user", "testuser123", "123test"])
