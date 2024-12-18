@@ -26,6 +26,7 @@ class EmailService:
             'email_verification': "Verify Your Account",
             'password_reset': "Password Reset Instructions",
             'account_locked': "Account Locked Notification"
+            'notifications_to_user_for_professional_status_upgraded': :"Notifications To User For Professional Status Upgraded"
         }
 
         if email_type not in subject_map:
@@ -43,3 +44,13 @@ class EmailService:
             "verification_url": verification_url,
             "email": user.email
         }, 'email_verification')
+
+     async def send_verification_email(self, user: User):
+        if not self.smtp_client:
+            return
+        await self.send_user_email({
+            "name": user.first_name,
+            "email": user.email
+        }, 'notifications_to_user_for_professional_status_upgraded')     
+      
+        
