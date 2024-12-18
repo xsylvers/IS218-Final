@@ -19,5 +19,5 @@ async def test_send_professional_status_update_markdown_to_email(email_service):
         "email": "test@example.com",
         "name": "Test User",
     }
-    await email_service.send_user_email(user_data, 'email_verification')
+    await email_service.send_user_email(user_data, 'professional_status_is_now_upgraded')
     # Manual verification in Mailtrap
