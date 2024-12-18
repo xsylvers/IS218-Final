@@ -214,23 +214,23 @@ async def manager_user(db_session: AsyncSession):
 @pytest.fixture(scope="function")
 def admin_token(admin_user):
     # Assuming admin_user has an 'id' and 'role' attribute
-    token_data = {"sub": str(admin_user.id), "role": admin_user.role.name}
+    token_data = {"sub": str(admin_user.email), "role": admin_user.role.name} #Changed the user.id to user.email to remain consistent with authentication logic 
     return create_access_token(data=token_data, expires_delta=timedelta(minutes=30))
 
 @pytest.fixture(scope="function")
 def manager_token(manager_user):
-    token_data = {"sub": str(manager_user.id), "role": manager_user.role.name}
+    token_data = {"sub": str(manager_user.email), "role": manager_user.role.name}
     return create_access_token(data=token_data, expires_delta=timedelta(minutes=30))
 
 @pytest.fixture(scope="function")
 def user_token(user):
-    token_data = {"sub": str(user.id), "role": user.role.name}
+    token_data = {"sub": str(user.email), "role": user.role.name}
     return create_access_token(data=token_data, expires_delta=timedelta(minutes=30))
 
 @pytest.fixture
 def email_service():
     if settings.send_real_mail == 'true':
-        # Return the real email service when specifically testing email functionality
+        # Returning the real email service when specifically testing email functionality
         return EmailService()
     else:
         # Otherwise, use a mock to prevent actual email sending
