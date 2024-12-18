@@ -1,3 +1,4 @@
+
 from builtins import Exception, bool, classmethod, int, str
 from datetime import datetime, timezone
 import secrets
@@ -50,6 +51,11 @@ class UserService:
         return await cls._fetch_user(session, email=email)
 
     @classmethod
+    async def get_by_username(cls, session: AsyncSession, nickname: str) -> Optional[User]:
+        return await cls._fetch_user(session, nickname=nickname)
+
+
+    @classmethod
     async def create(cls, session: AsyncSession, user_data: Dict[str, str], email_service: EmailService) -> Optional[User]:
         try:
             validated_data = UserCreate(**user_data).model_dump()
@@ -93,6 +99,32 @@ class UserService:
         except Exception as e:  # Broad exception handling for debugging
             logger.error(f"Error during user update: {e}")
             return None
+        
+    @classmethod
+    async def update_is_professional(cls, session: AsyncSession, user_id: UUID, is_professional: bool, email_service: EmailService) -> Optional[User]:
+        try: 
+            user = await cls.get_by_id(session, user_id)
+            if user.is_professional == is_professional:
+                logger.info(f"User {user_id} already has the desired professional status: {is_professional}. No update required.")
+                return user
+            
+            user.update_professional_status(is_professional)
+            session.add(user)
+            await session.commit()
+
+            updated_user = await cls.get_by_id(session, user_id)
+            if updated_user:
+                session.refresh(updated_user)
+                logger.info(f"User {user_id}'s is_professional is set to {is_professional}.")
+                if (is_professional):
+                    await email_service.send_professional_status_email(updated_user)
+                return updated_user
+            else:
+                logger.error(f"User {user_id} not found after update attempt.")
+            return None
+        except Exception as e:
+            logger.error(f"Error during is_professional update: {e}")
+            return None
 
     @classmethod
     async def delete(cls, session: AsyncSession, user_id: UUID) -> bool:
@@ -109,6 +141,12 @@ class UserService:
         query = select(User).offset(skip).limit(limit)
         result = await cls._execute_query(session, query)
         return result.scalars().all() if result else []
+    
+    @classmethod
+    async def list_users_non_professional(cls, session: AsyncSession, skip: int = 0, limit: int = 10) -> List[User]:
+        query = select(User).where((User.is_professional == False) | (User.is_professional == None)).offset(skip).limit(limit)
+        result = await cls._execute_query(session, query)
+        return result.scalars().all() if result else []
 
     @classmethod
     async def register_user(cls, session: AsyncSession, user_data: Dict[str, str], get_email_service) -> Optional[User]:
@@ -117,7 +155,10 @@ class UserService:
 
     @classmethod
     async def login_user(cls, session: AsyncSession, email: str, password: str) -> Optional[User]:
-        user = await cls.get_by_email(session, email)
+        if ('@' in email):
+            user = await cls.get_by_email(session, email)
+        else: #else its a nickname/username
+            user = await cls.get_by_nickname(session, email)
         if user:
             if user.email_verified is False:
                 return None
@@ -162,7 +203,8 @@ class UserService:
         if user and user.verification_token == token:
             user.email_verified = True
             user.verification_token = None  # Clear the token once used
-            user.role = UserRole.AUTHENTICATED
+            if user.role == UserRole.ANONYMOUS: 
+                user.role = UserRole.AUTHENTICATED
             session.add(user)
             await session.commit()
             return True
@@ -182,6 +224,13 @@ class UserService:
         return count
     
     @classmethod
+    async def count_non_professional_users(cls, session: AsyncSession) -> int:
+        query = select(func.count()).where((User.is_professional == False) | (User.is_professional == None))
+        result = await session.execute(query)
+        count = result.scalar()
+        return count
+
+    @classmethod
     async def unlock_user_account(cls, session: AsyncSession, user_id: UUID) -> bool:
         user = await cls.get_by_id(session, user_id)
         if user and user.is_locked:
@@ -191,3 +240,4 @@ class UserService:
             await session.commit()
             return True
         return False
+
