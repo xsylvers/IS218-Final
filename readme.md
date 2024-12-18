@@ -3,21 +3,29 @@
 ## Links to Commits
 Commit: (https://github.com/xsylvers/IS218-Final/commit/25b52c0433dc875c179bacd583c2121031843105)
 
-Commit:
+Commit: (https://github.com/xsylvers/IS218-Final/commit/186f5481a200dd006133b6995bef09bd7f316305)
 
-Commit:
+Commit: (https://github.com/xsylvers/IS218-Final/commit/cf914f5fbe243a90bac4bd1edbec48771249e2d4)
 
-Commit:
+Commit: (https://github.com/xsylvers/IS218-Final/commit/d2fe01c18057973cc9e60e757af1b59639eff742)
 
-Commit:
+Commit: (https://github.com/xsylvers/IS218-Final/commit/c7589e4e02bb74b21b1682cf53f07f32cb13cd0a)
 
-Commit:
+Commit: (https://github.com/xsylvers/IS218-Final/commit/82497a495959f21ca7733069202f0ea00b602b7d)
 
-Commit:
+Commit: (https://github.com/xsylvers/IS218-Final/commit/96c315bd403751a7dd8da4523da0885291fc49c9)
 
-Commit:
+Commit: (https://github.com/xsylvers/IS218-Final/commit/0a1db3a4ce8026635484e6760d04c9572838da8a)
 
-Commit: 
+Commit: (https://github.com/xsylvers/IS218-Final/commit/49c03c72ce72552ca97c7613706b0604c57e099e)
+
+Commit: (https://github.com/xsylvers/IS218-Final/commit/3b2560603ac10af8b01acfc7d26586deef069233)
+
+Commit: (https://github.com/xsylvers/IS218-Final/commit/50ba019daee85a14d7b94e577d293d72567d9a80)
+
+Commit: (https://github.com/xsylvers/IS218-Final/commit/e152d0a74e27a53765d869796057567d606d7c2d)
+
+Commit:(https://github.com/xsylvers/IS218-Final/commit/d49e7f6826c7b9ae7bdda0e8be9d851ae84215da)
 
 
 
